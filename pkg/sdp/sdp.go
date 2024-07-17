@@ -514,6 +514,9 @@ func (s *SessionDescription) unmarshalMediaEncryptionKey(value string) error {
 }
 
 func (s *SessionDescription) unmarshalMediaAttribute(value string) error {
+	if strings.Contains(value, "MPEG4") {
+		value = strings.ToLower(value)
+	}
 	i := strings.IndexRune(value, ':')
 	var a psdp.Attribute
 	if i > 0 {
